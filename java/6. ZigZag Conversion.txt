@@ -1,0 +1,24 @@
+public class Solution {
+    public String convert(String s, int numRows) {
+        String []s1=new String[numRows];
+        int j=0;
+        Arrays.fill(s1,"");
+        while(j<s.length())
+        {
+            for(int i=0;i<numRows && j<s.length();i++)
+            {
+               s1[i]+=s.charAt(j++);
+            }
+            for(int i=numRows-2;i>0&&j<s.length();i--)
+            {
+                s1[i]+=s.charAt(j++);
+            }
+        }
+        String ss="";
+        for(int i=0;i<numRows;i++)
+        {
+            ss=ss+s1[i];
+        }
+        return ss;
+    }
+}
