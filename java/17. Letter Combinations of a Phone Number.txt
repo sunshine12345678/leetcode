@@ -1,0 +1,40 @@
+public class Solution {
+    public List<String> letterCombinations(String digits) {
+        String s[]=new String[10];
+        s[2]="abc";
+        s[3]="def";
+        s[4]="ghi";
+        s[5]="jkl";
+        s[6]="mno";
+        s[7]="pqrs";
+        s[8]="tuv";
+        s[9]="wxyz";
+        List<String> result=new ArrayList<>();
+        
+        int number[]=new int[digits.length()];
+        
+        int k=digits.length()-1;
+        while(k>=0)
+        {
+            k=digits.length()-1;
+            String temp="";
+            for(int i=0;i<digits.length();i++)
+            {
+               temp+=s[digits.charAt(i)-'0'].charAt(number[i]);
+            }
+            result.add(temp);
+            while(k>=0)
+            {
+                if(number[k]<(s[digits.charAt(k)-'0'].length()-1))
+                {
+                    number[k]++;
+                    break;
+                }else{
+                    number[k]=0;
+                    k--;
+                }
+            }
+        }
+        return result;
+    }
+}

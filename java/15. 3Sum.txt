@@ -1,0 +1,46 @@
+public class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+    
+     List<List<Integer>> ss = new ArrayList<List<Integer>>();  
+     
+     if(nums.length<3||nums==null)
+     return ss;
+     
+     Arrays.sort(nums);
+     
+     for(int i=0;i<nums.length-2;i++)
+     {
+         if(i>0&&nums[i]==nums[i-1])
+         continue;
+         find(nums,i+1,nums.length-1,nums[i],ss);
+     }
+     
+     return ss;
+    }
+    public void find(int nums[],int begin,int end,int target,List<List<Integer>> ss)
+    {
+        int left=begin,right=end;
+        while(left<right)
+        {
+            if((nums[left]+nums[right]+target)==0)
+            {
+                List<Integer> l=new ArrayList<>();
+                l.add(target);
+                l.add(nums[left]);
+                l.add(nums[right]);
+                ss.add(l);
+                while(left<right&&nums[left]==nums[left+1])left++;
+                while(left<right&&nums[right]==nums[right-1])right--;
+                left++;
+                right--;
+            }
+            else if((nums[left]+nums[right]+target)>0)
+            {
+                right--;
+            }else
+            {
+                left++;
+            }
+        }
+    }
+}

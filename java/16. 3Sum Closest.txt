@@ -1,0 +1,41 @@
+public class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+    //求的是哪3个数的和与target最接近，输出最近的和
+     int closest=0;
+     if(nums.length<3||nums==null)
+     return closest;
+     
+     Arrays.sort(nums);
+     int min=999999999;
+     for(int i=0;i<nums.length-2;i++)
+     {
+         if(i>0&&nums[i]==nums[i-1])
+         continue;
+        int left=i+1,right=nums.length-1;
+        while(left<right)
+        {
+            int sum=nums[left]+nums[right]+nums[i];
+            
+             int diff=Math.abs(sum-target);
+            
+            
+             if(diff<=min)
+             {
+                 min=diff;
+                 closest=sum;
+             }
+             if(sum>target)
+             {
+                 right--;
+             }
+             else{
+                 left++;
+             }
+               
+        }
+     }
+     
+     return closest;
+    }
+   
+}
