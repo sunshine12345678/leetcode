@@ -1,0 +1,30 @@
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        
+        List<String> res=new ArrayList<>();
+        
+        if(n<1)
+        return res;
+        
+        String s=new String();
+        
+        dfs(res,s,n,n);
+        return res;
+    }
+    public void dfs(List<String> res,String s,int left,int right)
+    {
+        if(left>right)//left,right是剩余未分配的括号，右括号数不能小于左括号数，即s的左括号要大于等于右括号
+        return;
+        
+        if(left==0&&right==0)
+        {
+            res.add(s);
+            return;
+        }
+        if(left>0)
+        dfs(res,s+'(',left-1,right);
+        if(right>0)
+        dfs(res,s+')',left,right-1);
+        
+    }
+}
