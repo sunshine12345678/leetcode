@@ -1,0 +1,58 @@
+public class Solution {
+    public List<Integer> findSubstring(String s, String[] words) {
+       
+        List<Integer> list= new ArrayList<>();
+        if(s==null||s.length()==0||words==null||words[0].length()==0)
+        return list;
+        Map<String,Integer> map1 = new HashMap<>();
+        int len=words.length;
+        int lenw=words[0].length();
+        int lens=len*lenw;
+        for(int i=0;i<words.length;i++)
+        {
+            if(!map1.containsKey(words[i]))
+            map1.put(words[i],1);
+            else
+            map1.put(words[i],map1.get(words[i])+1);
+        }
+        int start=0;
+        for(int i=0;i<lenw;i++)
+        {
+             start=i;
+            Map<String,Integer> map = new HashMap<>();
+            for(int j=i;j+lenw<=s.length();j=j+lenw)
+            {
+                String temp=s.substring(j,j+lenw);
+                if(map1.containsKey(temp))
+                {   
+                    if(!map.containsKey(temp))
+                    map.put(temp,1);
+                    else
+                    map.put(temp,map.get(temp)+1);
+                    if(j+lenw-start>lens)
+                    {    
+                        String cur=s.substring(start,start+lenw);
+                        if(map.get(cur)>1)
+                        {
+                            map.put(cur,map.get(cur)-1);
+                        }
+                        else
+                        {
+                            map.remove(cur);
+                        }
+                         start=start+lenw;
+                    }
+                    if(j+lenw-start==lens&&map.equals(map1))
+                    {
+                        list.add(start);
+                    }
+                }else{
+                    map.clear();
+                    start=j+lenw;
+                }
+                
+            }
+        }
+        return list;
+    }
+}
