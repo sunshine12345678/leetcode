@@ -1,0 +1,51 @@
+public class Solution {
+   public static int divide(int dividend, int divisor) {
+	        
+	       
+	        long c=1;
+	        long res=0;
+	        if(divisor==0)
+	        return Integer.MAX_VALUE;
+	        if(dividend==0)
+	        return 0;
+	        long n=dividend;
+	        long m=divisor;
+	        int flag=1;
+	        if(dividend<0)
+	        {
+	            n=-(long)dividend;
+	            flag-=1;
+	        }
+	        if(divisor<0)
+	        {
+	            m=-(long)divisor;
+	            flag-=1;
+	        } 
+	        
+	        while(n>m)
+	        {
+	            m=m<<1;
+	            c=c<<1;
+	        }
+	        
+	        while(n>=Math.abs((long)divisor))
+	        {
+	            
+	            while(n>=m)
+	            {
+	                n=n-m;
+	                res+=c;
+	            }
+	                m=m>>1;
+	                c=c>>1;
+	        }
+	        if(flag==0)
+	        res=-res;
+	        
+	        System.out.println(res);
+	       if(res<-2147483648||res>2147483647)
+	       return Integer.MAX_VALUE;
+	       else 
+	    	   return (int)res;
+	    }
+}
