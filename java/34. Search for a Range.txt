@@ -1,0 +1,45 @@
+public class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        
+        int left=0;
+        int right=nums.length-1;
+        int start=nGetStartOrEnd(nums,left,right,target,true);
+        int end=nGetStartOrEnd(nums,left,right,target,false);
+       return new int[]{start,end};
+        
+    }
+    public int nGetStartOrEnd(int []nums,int left,int right,int target,boolean direction)//true=left
+    {
+        if(left>right)
+        return -1;
+        else
+        {
+            int mid=(left+right)/2;
+           if(nums[mid]<target)
+           {
+               return nGetStartOrEnd(nums,mid+1,right,target,direction);
+           }
+           else if(nums[mid]>target)
+           {
+               return nGetStartOrEnd(nums,left,mid-1,target,direction);
+           }
+           else
+           {
+               if(direction)
+               {
+                   if(mid==0||nums[mid-1]<target)
+                   return mid;
+                   else
+                   return nGetStartOrEnd(nums,left,mid-1,target,direction);
+               }
+               else
+               {
+                   if(mid==nums.length-1||nums[mid+1]>target)
+                   return mid;
+                   else
+                   return nGetStartOrEnd(nums,mid+1,right,target,direction);
+               }
+           }
+        }
+    }
+}
