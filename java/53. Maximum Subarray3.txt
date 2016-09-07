@@ -1,0 +1,32 @@
+public class Solution {
+    public int maxSubArray(int[] nums) {
+         return nGetMaxSum(nums,0,nums.length-1);
+    }
+    public int nGetMaxSum(int []nums,int left,int right)
+    {
+        if(left==right)
+        return nums[left];
+        int mid=(left+right)/2;
+        int leftMax=nGetMaxSum(nums,left,mid);
+        int rightMax=nGetMaxSum(nums,mid+1,right);
+        
+        int leftMaxm=nums[mid];
+        int rightMaxm=nums[mid+1];
+        int temp=0;
+        for(int i=mid;i>=left;i--)
+        {
+            temp+=nums[i];
+            if(leftMaxm<temp)
+            leftMaxm=temp;
+        }
+        temp=0;
+        for(int i=mid+1;i<=right;i++)
+        {
+            temp+=nums[i];
+            if(rightMaxm<temp)
+            rightMaxm=temp;
+        }
+        return Math.max(Math.max(leftMax,rightMax),(leftMaxm+rightMaxm));
+        
+    }
+}

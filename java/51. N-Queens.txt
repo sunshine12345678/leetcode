@@ -1,0 +1,51 @@
+public class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> res=new ArrayList<List<String>>();
+        int []a=new int[n];
+        nQueen(res,0,n,a);
+        
+        return res;
+    }
+    public  void nQueen(List<List<String>> res,int start,int n,int a[])
+	{
+		for(int i=0;i<n;i++)
+		{
+			a[start]=i;
+			if(isCheck(a,start))
+			{
+				if(start<n-1)
+					nQueen(res,start+1,n,a);
+				else
+				{
+				    List<String> list=new ArrayList<String>();
+					vGetList(list,a,n);
+					res.add(list);
+				}
+			}
+		}
+	}
+	public boolean isCheck(int a[],int n1)
+	{
+		for(int i=0;i<n1;i++)
+		{
+			if(a[i]==a[n1]|| Math.abs(a[i]-a[n1])==Math.abs(i-n1))
+				return false;
+		}
+		return true;
+	}
+	public void vGetList(List<String> list,int a[],int n)
+	{
+	   for(int i=0;i<n;i++)
+		{
+		    String s="";
+			for(int j=0;j<n;j++)
+			{
+				if(a[i]==j)
+					s+='Q';
+				else 
+					s+='.';
+			}
+			list.add(s);
+		}
+	}
+}
