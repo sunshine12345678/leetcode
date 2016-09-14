@@ -1,0 +1,33 @@
+public class Solution {
+    public int[][] generateMatrix(int n) {
+        int [][]res=new int[n][n];
+        int k=1;
+        vGetMatrix(res,0,0,n-1,n-1,k);
+        return res;
+    }
+    
+    void vGetMatrix(int [][]res,int x,int y,int x1,int y1,int k)
+    {
+         if(x>x1||y>y1)
+        return;
+        if(x==x1)
+        {
+            for(int i=y;i<=y1;i++)
+            res[x][i]=k++;
+            return;
+        }
+        
+        if(y==y1)
+        {
+            for(int i=x;i<=x1;i++)
+            res[i][y]=k++;
+            return;
+        }
+        
+        for(int i=y;i<y1;i++)res[x][i]=k++;
+        for(int j=x;j<x1;j++)res[j][y1]=k++;
+        for(int i=y1;i>y;i--)res[x1][i]=k++;
+        for(int j=x1;j>x;j--)res[j][y]=k++;
+        vGetMatrix(res,x+1,y+1,x1-1,y1-1,k);
+    }
+}
