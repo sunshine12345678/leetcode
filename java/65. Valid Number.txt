@@ -1,0 +1,13 @@
+public class Solution {
+    public boolean isNumber(String s) {
+        //3. 3.2e e .2e 
+        if(s==null||s=="")
+        return false;
+        
+       String rex="[+-]?(\\d+\\.?\\d*|\\.\\d+)(e[-+]?\\d+)?";
+       if(s.trim().matches(rex))
+            return true;
+       else
+            return false;
+    }
+}
