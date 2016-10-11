@@ -1,0 +1,45 @@
+public class Solution {
+    public String addBinary(String a, String b) {
+        
+        int lenA=a.length();
+        int lenB=b.length();
+        String res="";
+        int temp;
+        int flag=0;
+        int i,j;
+        for(i=lenA-1,j=lenB-1;i>=0&&j>=0;i--,j--)
+        {
+           temp=(a.charAt(i)-'0')+(b.charAt(j)-'0')+flag;
+           
+           flag=temp/2;
+           temp=temp%2;
+           res=temp+res;
+        }
+        if(i>=0)
+        {
+            for(int k=i;k>=0;k--)
+            {
+                temp=(a.charAt(k)-'0')+flag;
+                
+                flag=temp/2;
+                temp=temp%2;
+                res=temp+res;
+            }
+        }
+        if(j>=0)
+        {
+              for(int k=j;k>=0;k--)
+            {
+                temp=(b.charAt(k)-'0')+flag;
+                
+                flag=temp/2;
+                temp=temp%2;
+                res=temp+res;
+            }
+        }
+        if(flag==1)
+        res=1+res;
+        
+        return res;
+    }
+}
