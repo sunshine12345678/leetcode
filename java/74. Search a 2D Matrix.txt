@@ -1,0 +1,39 @@
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int lenX=matrix.length;
+        int lenY=matrix[0].length;
+        
+        int leftX=0;
+        int rightX=lenX-1;
+        int mid=leftX+((rightX-leftX)>>1);
+        while(leftX<=rightX)
+        {
+            mid=leftX+((rightX-leftX)>>1);
+            if(matrix[mid][0]==target||matrix[mid][lenY-1]==target)
+            return true;
+            if(matrix[mid][0]<target&&matrix[mid][lenY-1]>target)
+            break;
+            if(matrix[mid][0]>target)
+            rightX=mid-1;
+            if(matrix[mid][lenY-1]<target)
+            leftX=mid+1;
+        }
+        if(leftX<=rightX)
+        {
+            int leftY=0;
+            int rightY=lenY-1;
+            int midY=leftY+((rightY-leftY)>>1);
+            while(leftY<=rightY)
+            {
+                midY=leftY+((rightY-leftY)>>1);
+                if(matrix[mid][midY]==target)
+                return true;
+                if(matrix[mid][midY]>target)
+                rightY=midY-1;
+                if(matrix[mid][midY]<target)
+                leftY=midY+1;
+            }
+        }
+        return false;
+    }
+}

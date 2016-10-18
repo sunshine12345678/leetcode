@@ -1,0 +1,26 @@
+//这题是简化目录，每一级目录前面都有一个斜杠，我可以首先对斜杠进行分割，分割之后得到的结果无外乎4种情况：正常目录名称，空字符，".",".."。对于“.”和空字符我们忽略它，对于正常的目录名称我们直接压入栈，对于"..",我们把栈顶元素出栈。通过这些处理之后，如果栈为空我们就返回根目录，如果栈不为空我们就逐个出栈并在每个元素前面加一个斜杠，最先出的位于路径的最后面
+public class Solution {
+    public String simplifyPath(String path) {
+        Stack<String> stack=new Stack<>();
+        for(String token:path.split("/"))
+        {
+            if(token.equals("..")){
+                if(!stack.empty())
+                stack.pop();
+            }else{
+                if(!token.equals(".")&&!token.isEmpty())
+                stack.push(token);
+            }
+        }
+        String res="/";
+        while(!stack.empty())
+        {
+          if(res.equals("/"))
+            res="/"+stack.pop();
+          else
+            res="/"+stack.pop()+res;
+        }
+      
+        return res;
+    }
+}
