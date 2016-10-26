@@ -1,0 +1,45 @@
+public class Solution {
+    public boolean exist(char[][] board, String word) {
+        
+        int row=board.length;
+        int col=board[0].length;
+        boolean isVisited[][]=new boolean[row][col];
+        
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                if(dfs(board,word,0,i,j,isVisited))
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    public boolean dfs(char [][]board,String word,int index,int row,int col,boolean [][]isVisited)
+    {
+        if(index==word.length())
+        return true;
+        
+        if(row<0||col<0||row>=board.length||col>=board[0].length)
+        return false;
+        if(board[row][col]!=word.charAt(index))
+        return false;
+        
+        if(isVisited[row][col])
+        return false;
+        
+        
+        isVisited[row][col]=true;
+        
+        boolean res=dfs(board,word,index+1,row+1,col,isVisited)||
+        dfs(board,word,index+1,row-1,col,isVisited)||
+        dfs(board,word,index+1,row,col+1,isVisited)||
+        dfs(board,word,index+1,row,col-1,isVisited);
+        
+        isVisited[row][col]=false;
+        
+        return res;
+    }
+}
