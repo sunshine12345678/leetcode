@@ -40,3 +40,15 @@ ssh-keygen -C 'yourmail@server.com' -t rsa
     先输入$ git remote rm origin
     再输入$ git remote add origin git@github.com:djqiang/gitdemo.git 就不会报错了！
     
+    版本回滚操作步骤:
+    1. 命令: git log // 显示所有提交记录.
+    2. 在所有提交记录中,选择需要回退到的commit ID(一个长字符串),复制.
+    3. 命令: git reset --hard XXYYZCCRERR // 最后一串是commit ID.完成回滚操作.
+    4. 命令: git log // 显示新的提交记录.
+
+    这里 利用 git reset 命令,可以任意回滚到过去,同时也可以穿越到未来.
+    很方便.
+    (回到未来 （fast -forward)
+    git reflog查看该用户的所有操作
+    git reset --hard commit id
+    
