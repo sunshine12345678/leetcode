@@ -52,3 +52,10 @@ ssh-keygen -C 'yourmail@server.com' -t rsa
     git reset --hard commit id
     
     gitk 可视化界面
+    
+    如何对过去的某个版本分出一个分支？
+    git log  //通过此命令获得历史版本1的commit 哈希值
+    git reset --hard (历史版本1的哈希值) //将分支还原到历史版本1
+    git branch -b（新分支） //新建一个新分支
+    git reflog  //获取本来的内容的哈希值
+    git reset --hard (还原历史版本的哈希值)
