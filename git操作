@@ -48,6 +48,7 @@ ssh-keygen -C 'yourmail@server.com' -t rsa
 
     这里 利用 git reset 命令,可以任意回滚到过去,同时也可以穿越到未来.
     git reflog查看该用户的所有操作
+    (回到未来 （fast -forward)
     git reset --hard commit id
     
     gitk 可视化界面
