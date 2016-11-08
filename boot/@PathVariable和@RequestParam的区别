@@ -1,0 +1,25 @@
+ 
+ http://localhost:8080/Springmvc/user/page.do?pageSize=3&pageNow=2 地址是？的左边,右边是参数
+ 
+ //@PathVariable 请求路径
+	 @RequestMapping("/user/{username},{password}")
+	 user getuser(@PathVariable String username,@PathVariable String password)
+	 {
+		 user u=new user();
+		 u.setUsername(username);
+		 u.setPassword(password);
+		 u.setSex("男");
+		 return u;
+	 }
+	 
+	 //@RequestParam 请求参数
+	 @RequestMapping("/user2")
+	 user getuser2( @RequestParam(value = "username2", required = true, defaultValue = "gu") String username, @RequestParam(value = "password2", required = false, defaultValue = "123") String password)
+	 {
+		 user u=new user();
+		 u.setUsername(username);
+		 u.setPassword(password);
+		 u.setSex("男111");
+		 return u;
+	 }//require默认为true，必须传入值；  defaultValue为默认值，当传入值不填时用默认值
+	
