@@ -1,5 +1,5 @@
  
- http://localhost:8080/Springmvc/user/page.do?pageSize=3&pageNow=2 地址是？的左边,右边是参数
+ http://localhost:8080/Springmvc/user/page.do?pageSize=3&pageNow=2 ？的左边是路径,右边是参数
  
  //@PathVariable 请求路径
 	 @RequestMapping("/user/{username},{password}")
