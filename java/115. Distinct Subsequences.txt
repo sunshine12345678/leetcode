@@ -1,0 +1,34 @@
+public class Solution {
+    //s中包含几个t
+    //distinctg表示s[0, i)中包含多少个值为t[0, j)的子序列
+    public int numDistinct(String s, String t) {
+        
+        int sLen = s.length();
+        int tLen = t.length();
+        
+        int[][] distinct = new int[sLen+1][tLen+1];
+        
+        if(s == null && t == null) {
+            return 1;
+        }
+        
+        for(int j=1;j<t.length();j++)
+            distinct[0][j] = 0;
+        for(int i=0;i<s.length();i++)
+            distinct[i][0] = 1;
+            
+        for(int i=1;i<=s.length();i++)
+        {
+            for(int j=1;j<=t.length();j++)
+            {
+                if(s.charAt(i-1) == t.charAt(j-1)) {
+                    distinct[i][j] = distinct[i-1][j-1] + distinct[i-1][j];
+                } else {
+                    distinct[i][j] = distinct[i-1][j];
+                }
+            }
+        }
+        
+        return distinct[sLen][tLen];
+    }
+}
